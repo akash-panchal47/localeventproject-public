@@ -44,10 +44,6 @@ A Django-based web app to manage and showcase **local events, festivals, and act
 
 1. **Clone the repository:**
 
-```bash
-git clone https://github.com/akash-panchal47/local-event-project.git
-cd local-event-project
-
 
 pip install -r requirements.txt
 
