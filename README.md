@@ -17,17 +17,17 @@ A Django-based web app to manage and showcase **local events, festivals, and act
 
 ## Screenshots
 
-## Admin Page
-![Admin Page](localeventproject/screenshots/adminpage.jpg)
+### Admin Page
+![Admin Page](screenshots/adminpage.jpg)
 
-## Event Details
-![Event Details](localeventproject/screenshots/details.jpg)
+### Event Details
+![Event Details](screenshots/details.jpg)
 
-## Home Page
-![Home Page](localeventproject/screenshots/home.jpg)
+### Home Page
+![Home Page](screenshots/home.jpg)
 
-## Join Event
-![Join Event](localeventproject/screenshots/join-event.jpg)
+### Join Event
+![Join Event](screenshots/event.jpg)
 
 
 
