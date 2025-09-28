@@ -145,12 +145,12 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = "the.akashpanchal00@gmail.com"   # Your Gmail
-EMAIL_HOST_PASSWORD = "ccjy fxcs tjgl bwzd"  # App Password (no spaces)
+EMAIL_HOST_USER = ""   # Your Gmail
+EMAIL_HOST_PASSWORD = ""  # App Password (no spaces)
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 
 # settings.py
-INSTAMOJO_API_KEY = "53916a4219d77147ae4044a133bd1059"
-INSTAMOJO_AUTH_TOKEN = "96c8fe9d41c94e9f80ef74475b65b002"
+INSTAMOJO_API_KEY = ""
+INSTAMOJO_AUTH_TOKEN = ""
 INSTAMOJO_ENDPOINT = "https://www.instamojo.com/api/1.1/"
