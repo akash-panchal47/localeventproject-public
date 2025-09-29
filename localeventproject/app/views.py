@@ -91,9 +91,9 @@ def delete_event(request, event_id):
 
 
 api = Instamojo(
-    api_key=settings.INSTAMOJO_API_KEY,
-    auth_token=settings.INSTAMOJO_AUTH_TOKEN,
-    endpoint=settings.INSTAMOJO_ENDPOINT
+    api_key = settings.INSTAMOJO_API_KEY,
+    auth_token = settings.INSTAMOJO_AUTH_TOKEN,
+    endpoint = settings.INSTAMOJO_ENDPOINT,
 )
 
 @login_required(login_url='login')
@@ -133,8 +133,8 @@ def payment_success(request):
     # Verify payment status
     url = f"https://www.instamojo.com/api/1.1/payment-requests/{payment_request_id}/{payment_id}/"
     headers = {
-        "X-Api-Key": "53916a4219d77147ae4044a133bd1059",
-        "X-Auth-Token": "96c8fe9d41c94e9f80ef74475b65b002",
+        "X-Api-Key": "",
+        "X-Auth-Token": "",
     }
     response = requests.get(url, headers=headers)
     payment_details = response.json()

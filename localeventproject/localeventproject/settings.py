@@ -13,19 +13,23 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ac%mr2fai)g6f6w1ddvre4fx^!d^$y#^d9csyzt(l&p^#1n%-f'
+
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+SECRET_KEY = os.getenv("SECRET_KEY", "dev-secret-key")
+DEBUG = os.getenv("DEBUG", "True") == "True"
+
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", ".vercel.app"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -44,6 +48,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -52,7 +57,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'localeventproject.urls'
+ROOT_URLCONF = "localeventproject.urls"
 
 TEMPLATES = [
     {
@@ -71,7 +76,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'localeventproject.wsgi.application'
+WSGI_APPLICATION = "localeventproject.wsgi.app"
 
 
 # Database
@@ -119,17 +124,27 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
-STATICFILES_DIRS =(os.path.join(BASE_DIR,"static"),)
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles") 
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+# Media
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+
 
 LOGIN_URL = "/login/"
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
 
-MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
 
 
 
@@ -145,12 +160,12 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = "the.akashpanchal00@gmail.com"   # Your Gmail
-EMAIL_HOST_PASSWORD = "ccjy fxcs tjgl bwzd"  # App Password (no spaces)
+EMAIL_HOST_USER = ""   # Your Gmail
+EMAIL_HOST_PASSWORD = ""  # App Password (no spaces)
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 
 # settings.py
-INSTAMOJO_API_KEY = "53916a4219d77147ae4044a133bd1059"
-INSTAMOJO_AUTH_TOKEN = "96c8fe9d41c94e9f80ef74475b65b002"
+INSTAMOJO_API_KEY = ""
+INSTAMOJO_AUTH_TOKEN = ""
 INSTAMOJO_ENDPOINT = "https://www.instamojo.com/api/1.1/"

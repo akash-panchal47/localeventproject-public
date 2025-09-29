@@ -25,12 +25,13 @@ SECRET_KEY = 'django-insecure-ac%mr2fai)g6f6w1ddvre4fx^!d^$y#^d9csyzt(l&p^#1n%-f
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic', 
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',   # if you are using whitenoise
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -123,6 +125,7 @@ STATIC_URL = 'static/'
 
 STATICFILES_DIRS =(os.path.join(BASE_DIR,"static"),)
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles") 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 LOGIN_URL = "/login/"
 LOGIN_REDIRECT_URL = "/"
@@ -141,16 +144,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # Email settings (example using Gmail)
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = ""   # Your Gmail
-EMAIL_HOST_PASSWORD = ""  # App Password (no spaces)
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+
+INSTAMOJO_API_KEY = os.environ.get("INSTAMOJO_API_KEY", "")
+INSTAMOJO_AUTH_TOKEN = os.environ.get("INSTAMOJO_AUTH_TOKEN", "")
+INSTAMOJO_ENDPOINT = os.environ.get("INSTAMOJO_ENDPOINT", "https://www.instamojo.com/api/1.1/")
 
 
-# settings.py
-INSTAMOJO_API_KEY = ""
-INSTAMOJO_AUTH_TOKEN = ""
-INSTAMOJO_ENDPOINT = "https://www.instamojo.com/api/1.1/"
